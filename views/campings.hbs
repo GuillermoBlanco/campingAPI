@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MY APP</title>
+</head>
+<body>
+May Node and Express be with you.
+
+<ul class="campings">
+    <% for(var i=0; i<campings.length; i++) {%>
+    <li class="camping">
+        <span><%= campings[i].name %></span>
+        <span><%= campings[i].quote %></span>
+    </li>
+    <% } %>
+</ul>
+
+<form action="/campings" method="POST">
+    <input type="text" placeholder="name" name="name">
+    <input type="text" placeholder="camping" name="camping">
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
