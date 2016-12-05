@@ -7,31 +7,35 @@ router.get('/', function(req, res, next) {
     Campings.all(function(err, docs) {
         res.render('campings', {campings: docs})
     });
-    //res.send('respond with a resource');
 });
 
 /* POST camping. */
 router.post('/', function(req, res, next) {
     Campings.new(req.body,function(err, docs) {
-        //res.render('camping', {campings: docs});
-        res.redirect('/');
+        res.redirect('/campings');
     });
-    //res.send('respond with a resource');
 });
 
 /* GET camping details. */
 router.get('/:id', function(req, res, next) {
-    res.send('respond with a resource');
+    Campings.get(req.params.id,function(err, doc) {
+        res.render('camping', {camping: doc})
+    });
 });
 
 /* PUT camping details. */
-router.put('/:id', function(req, res, next) {
-    res.send('respond with a resource');
+router.post('/:id', function(req, res, next) {
+    console.log("About to put",req.body);
+    Campings.edit(req.params.id, req.body,function(err, docs) {
+        res.redirect('/campings');
+    });
 });
 
 /* DELETE camping. */
-router.delete('/:id', function(req, res, next) {
-    res.send('respond with a resource');
+router.get('/delete/:id', function(req, res, next) {
+    Campings.delete(req.params.id,function(result) {
+        res.redirect('/campings');
+    });
 });
 
 module.exports = router;
